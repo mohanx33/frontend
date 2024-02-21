@@ -43,8 +43,7 @@ export const BlogDetail = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        setBlog(data); // Assuming the response contains blog data
-      } else {
+        setBlog(data);
         console.error("Failed to fetch blog data");
       }
     } catch (error) {

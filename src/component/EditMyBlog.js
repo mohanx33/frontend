@@ -31,7 +31,7 @@ export const EditBlog = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        setBlog(data); // Assuming the response contains blog data
+        setBlog(data);
       } else {
         console.error("Failed to fetch blog data");
       }
@@ -43,7 +43,7 @@ export const EditBlog = () => {
   const onFinish = async (values) => {
     try {
       const getToken = localStorage.getItem("access_token");
-      // Make an API request to update the blog data
+
       const response = await fetch(
         `http://localhost:8080/blog/updateBlog/${id}`,
         {

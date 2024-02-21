@@ -39,7 +39,6 @@ export const AllBlogs = () => {
     <div style={{ padding: "20px" }}>
       {console.log(getToken, "dbdbdb")}
       <Row gutter={16}>
-        {/* Left Side */}
         <Col xs={24} sm={10} md={6} lg={4}>
           <Card
             size="small"
@@ -88,7 +87,6 @@ export const AllBlogs = () => {
           </Card>
         </Col>
 
-        {/* Right Side */}
         <Col xs={24} sm={12} md={16} lg={16}>
           <Row gutter={[16, 16]}>
             {blogData &&
@@ -140,8 +138,6 @@ export const AllBlogs = () => {
                             {formatDate(item?.postedDate)}
                           </Text>
                         </div>
-
-                        {/* Assuming createdAt field is available */}
                       </div>
                       <Text ellipsis={{ rows: 2, expandable: true }}>
                         {item?.blogBody}

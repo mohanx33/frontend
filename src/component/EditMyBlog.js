@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { json, useNavigate, useParams } from "react-router-dom";
 import { Form, Input, Button, Card } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export const EditBlog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,16 +19,13 @@ export const EditBlog = () => {
 
   const fetchBlog = async (token) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/blog/getBlogById/${id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: token,
-          },
-        }
-      );
+      const response = await fetch(`${apiUrl}/blog/getBlogById/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      });
       if (response.ok) {
         const data = await response.json();
         setBlog(data);
@@ -44,17 +41,14 @@ export const EditBlog = () => {
     try {
       const getToken = localStorage.getItem("access_token");
 
-      const response = await fetch(
-        `http://localhost:8080/blog/updateBlog/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: JSON.parse(getToken),
-          },
-          body: JSON.stringify(values),
-        }
-      );
+      const response = await fetch(`${apiUrl}/blog/updateBlog/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: JSON.parse(getToken),
+        },
+        body: JSON.stringify(values),
+      });
       if (response.ok) {
         window.alert("Updated Successfully");
         console.log("Blog updated successfully");

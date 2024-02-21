@@ -2,7 +2,7 @@ import { Card, Form, Input, Button } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export const AddBlog = () => {
   const [blogHeading, setBlogHeading] = useState("");
   const [blogContent, setBlogContent] = useState("");
@@ -30,7 +30,7 @@ export const AddBlog = () => {
         blogHeading: blogHeading,
         blogBody: blogContent,
       };
-      const response = await fetch(`http://localhost:8080/blog/addBlog`, {
+      const response = await fetch(`${apiUrl}/blog/addBlog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

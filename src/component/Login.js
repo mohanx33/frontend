@@ -3,7 +3,7 @@ import { Form, Input, Button, Typography, Card } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export const Login = () => {
   const navigate = useNavigate();
   const login = async (values) => {
@@ -12,7 +12,7 @@ export const Login = () => {
         email: values.email,
         password: values.password,
       };
-      const saveData = await fetch("http://localhost:8080/user/login", {
+      const saveData = await fetch(`${apiUrl}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

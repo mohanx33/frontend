@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { formatDate } from "../dateUtils";
 
 const { Title, Text } = Typography;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const AllBlogs = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const AllBlogs = () => {
   useEffect(() => {
     (async () => {
       try {
-        const saveData = await fetch(`http://localhost:8080/blog/getAllBlog`, {
+        const saveData = await fetch(`${apiUrl}/blog/getAllBlog`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

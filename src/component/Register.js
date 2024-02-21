@@ -13,7 +13,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export const Register = () => {
   const navigate = useNavigate();
   const [avatorId, setAvatoreId] = useState(null);
@@ -22,7 +22,7 @@ export const Register = () => {
       const formData = new FormData();
       formData.append("file", avatar); // Append avatar file to FormData
       console.log(formData, "formData");
-      const saveData = await fetch(`http://localhost:8080/uploadFiles/upload`, {
+      const saveData = await fetch(`${apiUrl}/uploadFiles/upload`, {
         method: "POST",
         body: formData,
       });
@@ -49,7 +49,7 @@ export const Register = () => {
         password: values.password,
         profilePicture: imageId,
       };
-      const saveData = await fetch("http://localhost:8080/user/addUser", {
+      const saveData = await fetch(`${apiUrl}/user/addUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

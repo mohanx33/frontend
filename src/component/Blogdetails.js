@@ -4,7 +4,7 @@ import { Card, Avatar, Typography, Button } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { formatDate } from "../dateUtils";
 const { Title, Text } = Typography;
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export const BlogDetail = () => {
   const { id, auth } = useParams();
   const [blog, setBlog] = useState({});
@@ -31,16 +31,13 @@ export const BlogDetail = () => {
 
   const fetchBlog = async (token) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/blog/getBlogById/${id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: token,
-          },
-        }
-      );
+      const response = await fetch(`${apiUrl}/blog/getBlogById/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      });
       if (response.ok) {
         const data = await response.json();
         setBlog(data);

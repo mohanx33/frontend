@@ -4,7 +4,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export const MyProfile = () => {
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
@@ -21,16 +21,13 @@ export const MyProfile = () => {
 
   const fetchUser = async (id, token) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/user/getUserById/${id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: token,
-          },
-        }
-      );
+      const response = await fetch(`${apiUrl}/user/getUserById/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      });
       if (response.ok) {
         const data = await response.json();
         setUserData(data);

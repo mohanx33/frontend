@@ -3,7 +3,7 @@ import { Card, Row, Col, Typography, Avatar, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { formatDate } from "../dateUtils";
-
+const apiUrl = process.env.REACT_APP_API_URL;
 const { Text, Title } = Typography;
 export const MyBlogs = () => {
   const navigate = useNavigate();
@@ -21,16 +21,13 @@ export const MyBlogs = () => {
 
   const fetchUserBlogs = async (id, token) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/blog/getAllBlogByAuthor/${id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: token,
-          },
-        }
-      );
+      const response = await fetch(`${apiUrl}/blog/getAllBlogByAuthor/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      });
       if (response.ok) {
         const data = await response.json();
         setBlogs(data);
